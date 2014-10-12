@@ -1,5 +1,5 @@
 FROM debian:wheezy
-MAINTAINER Steeve Morin "steeve.morin@gmail.com"
+MAINTAINER Ben Piper "ben@benpiper.com"
 
 RUN apt-get update && apt-get -y install  unzip \
                         xz-utils \
