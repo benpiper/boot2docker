@@ -21,16 +21,16 @@ b2dVersion="$(cat $ROOTFS/etc/version)" # something like "1.1.0"
 b2dDetail="$(cat $ROOTFS/etc/boot2docker)" # something like "master : 740106c - Tue Jul 29 03:29:25 UTC 2014"
 tclVersion="$(cat $ROOTFS/usr/share/doc/tc/release.txt)" # something like "5.3"
 cat > $ROOTFS/etc/os-release <<-EOOS
-NAME=Boot2Docker
+NAME=webdock
 VERSION=$b2dVersion
-ID=boot2docker
+ID=webdock
 ID_LIKE=tcl
 VERSION_ID=$b2dVersion
-PRETTY_NAME="Boot2Docker $b2dVersion (TCL $tclVersion); $b2dDetail"
+PRETTY_NAME="webdock $b2dVersion (TCL $tclVersion); $b2dDetail"
 ANSI_COLOR="1;34"
-HOME_URL="http://boot2docker.io"
-SUPPORT_URL="https://github.com/boot2docker/boot2docker"
-BUG_REPORT_URL="https://github.com/boot2docker/boot2docker/issues"
+HOME_URL="http://benpiper.com"
+SUPPORT_URL="https://github.com/benpiper/boot2docker"
+BUG_REPORT_URL="https://github.com/benpiper/boot2docker/issues"
 EOOS
 
 # Pack the rootfs
@@ -44,7 +44,7 @@ cd -
 xorriso  \
     -publisher "Docker Inc." \
     -as mkisofs \
-    -l -J -R -V "Boot2Docker-v$(cat $ROOTFS/etc/version)" \
+    -l -J -R -V "webdock-v$(cat $ROOTFS/etc/version)" \
     -no-emul-boot -boot-load-size 4 -boot-info-table \
     -b boot/isolinux/isolinux.bin -c boot/isolinux/boot.cat \
     -isohybrid-mbr /usr/lib/syslinux/isohdpfx.bin \
