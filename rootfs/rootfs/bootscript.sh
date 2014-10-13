@@ -69,24 +69,6 @@ if [ -e /var/lib/boot2docker/bootlocal.sh ]; then
     /var/lib/boot2docker/bootlocal.sh > /var/log/bootlocal.log 2>&1 &
 fi
 
-# Set IP addresses for Docker containers to use
-ifconfig eth0 192.168.200.1 netmask 255.255.255.0
-ifconfig eth0 up
-ifconfig eth0:1 192.168.200.2 netmask 255.255.255.0
-ifconfig eth0:2 192.168.200.3 netmask 255.255.255.0
-ifconfig eth0:3 192.168.200.4 netmask 255.255.255.0
-ifconfig eth0:4 192.168.200.5 netmask 255.255.255.0
-
-route add default gw 192.168.200.250 eth0
-
-
-# Launch docker images
-
-docker run --name webserver1 -e CONTAINERNAME=webserver1 -p 192.168.200.1:80:80 benpiper/lbwebtest
-docker run --name webserver2 -e CONTAINERNAME=webserver2 -p 192.168.200.2:80:80 benpiper/lbwebtest
-docker run --name webserver3 -e CONTAINERNAME=webserver3 -p 192.168.200.3:80:80 benpiper/lbwebtest
-docker run --name webserver4 -e CONTAINERNAME=webserver4 -p 192.168.200.4:80:80 benpiper/lbwebtest
-
 # Execute automated_script
 # disabled - this script was written assuming bash, which we no longer have.
 #/etc/rc.d/automated_script.sh
